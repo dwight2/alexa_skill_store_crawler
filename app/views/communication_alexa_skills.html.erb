@@ -1,0 +1,9 @@
+<%= link_to 'home', root_path %>
+
+<h1>Alexa Skills - Communication</h1>
+<% @skillsArray.each do |skill| %>
+  <p><%= skill.name %></p>
+  <p><%= skill.dev %></p>
+  <p><%= skill.desc %></p>
+  <p>----------------------------------</p>
+<% end %>
