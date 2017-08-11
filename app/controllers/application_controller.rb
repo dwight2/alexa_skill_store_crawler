@@ -4,21 +4,9 @@ class ApplicationController < ActionController::Base
   require 'mechanize'
   require 'open-uri'
   require 'nokogiri'
-  require 'capybara'
 
   def index
     render template: 'home'
-  end
-
-  class Skill
-    def initialize(name, dev, desc)
-      @name = name
-      @dev = dev
-      @desc = desc
-    end
-    attr_reader :name
-    attr_reader :dev
-    attr_reader :desc
   end
 
   def crawler(url)
