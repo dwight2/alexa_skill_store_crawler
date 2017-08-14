@@ -1,0 +1,12 @@
+<%= link_to 'home', root_path %>
+
+<h1>Alexa Skills - <%= @skills.first.category %></h1>
+<% @skills.each do |skill| %>
+  <p><%= skill.name %></p>
+  <p><%= skill.dev %></p>
+  <p>Category: <%= skill.category %></p>
+  <p>Rating: <%= skill.rating %></p>
+  <p>Number of ratings: <%= skill.number_of_rating %></p>
+  <p><%= skill.desc %></p>
+  <p>----------------------------------</p>
+<% end %>
