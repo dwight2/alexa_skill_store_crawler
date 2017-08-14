@@ -3,12 +3,10 @@ Rails.application.routes.draw do
 
   root 'application#index'
   get 'application/business_and_finance_alexa_skills'
-  get 'application/communication_alexa_skills'
   get 'application/connected_car_alexa_skills'
   get 'application/education_and_reference_alexa_skills'
   get 'application/food_and_drink_alexa_skills'
   get 'application/games_trivia_and_accessories_alexa_skills'
-  get 'application/health_and_fitness_alexa_skills'
   get 'application/lifestyle_alexa_skills'
   get 'application/local_alexa_skills'
   get 'application/movies_and_tv_alexa_skills'

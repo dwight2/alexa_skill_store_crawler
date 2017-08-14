@@ -1,14 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>AmazonAlexaSkillsList</title>
-    <%= csrf_meta_tags %>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
   </head>
-
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+      <div>
+        <div class="row">
+          <div class="col col-lg-12">
+            <h1>Alexa Skills</h1>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col col-sm-2">
+          <h4>Categories:</h4>
+          <%= link_to 'All', root_path %>
+          </br>
+          <%= link_to '> Business & Finance', application_business_and_finance_alexa_skills_path %>
+          </br>
+          <%= link_to '> Connected Car', application_connected_car_alexa_skills_path %>
+          </br>
+          <%= link_to '> Education & Reference', application_education_and_reference_alexa_skills_path %>
+          </br>
+          <%= link_to '> Food & Drink', application_food_and_drink_alexa_skills_path %>
+          </br>
+          <%= link_to '> Games, Trivia & Accessories', application_games_trivia_and_accessories_alexa_skills_path %>
+          </br>
+          <%= link_to '> Lifestyle', application_lifestyle_alexa_skills_path %>
+          </br>
+          <%= link_to '> Local', application_local_alexa_skills_path %>
+          </br>
+          <%= link_to '> Movies & TV', application_movies_and_tv_alexa_skills_path %>
+          </br>
+          <%= link_to '> Music & Audio', application_music_and_audio_alexa_skills_path %>
+          </br>
+          <%= link_to '> News', application_news_alexa_skills_path %>
+          </br>
+          <%= link_to '> Novelty & Humor', application_novelty_and_humor_alexa_skills_path %>
+          </br>
+          <%= link_to '> Productivity', application_productivity_alexa_skills_path %>
+          </br>
+          <%= link_to '> Shopping', application_shopping_alexa_skills_path %>
+          </br>
+          <%= link_to '> Smart Home', application_smart_home_alexa_skills_path %>
+          </br>
+          <%= link_to '> Social', application_social_alexa_skills_path %>
+          </br>
+          <%= link_to '> Travel & Transportation', application_travel_and_transportation_alexa_skills_path %>
+          </br>
+          <%= link_to '> Utilities', application_utilities_alexa_skills_path %>
+          </br>
+          <%= link_to '> Weather', application_weather_alexa_skills_path %>
+          </br>
+        </div>
+      <div class="col col-lg-10">
+        <%= yield %>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
   </body>
 </html>

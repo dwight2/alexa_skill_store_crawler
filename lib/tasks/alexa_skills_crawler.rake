@@ -57,62 +57,6 @@ namespace :alexa_skills_crawler do
     end
   end
 
-  task communication: :environment do
-
-    class Skill < ActiveRecord::Base
-      attr_reader :name
-      attr_reader :dev
-      attr_reader :desc
-      attr_reader :rating
-      attr_reader :number_of_rating
-      attr_reader :category
-    end
-
-    class ApplicationController < ActionController::Base
-      protect_from_forgery with: :exception
-
-      require 'mechanize'
-      require 'open-uri'
-      require 'nokogiri'
-
-      agent = Mechanize.new
-      agent.user_agent = 'Chrome/41.0.2228.0'
-      url = "https://www.amazon.com/s/ref=sr_pg_1?rh=n%3A13727921011%2Cn%3A%2113727922011%2Cn%3A14284864011%2Cn%3A14284865011&ie=UTF8&qid=1502376692&ajr=2"
-      page = agent.get(url)
-      loop do
-        if link = page.link_with(:class => "pagnNext")
-          apps = page.parser.css('.s-item-container')
-          apps.each do |app|
-            name = app.css('h2').text
-            dev = app.css('.a-row.a-spacing-none>span').text
-            desc = app.css('.a-unordered-list>span').text
-            category = 'Communication'
-            rating = app.css('.a-icon.a-icon-star').text
-            number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
-            skill = Skill.find_or_initialize_by(name: name)
-            skill.update_attributes({name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating})
-            skill.save!
-          end
-          page = link.click
-        else
-          apps = page.parser.css('.s-item-container')
-          apps.each do |app|
-            name = app.css('h2').text
-            dev = app.css('.a-row.a-spacing-none>span').text
-            desc = app.css('.a-unordered-list>span').text
-            category = 'Communiction'
-            rating = app.css('.a-icon.a-icon-star').text
-            number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
-            skill = Skill.find_or_initialize_by(name: name)
-            skill.update_attributes({name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating})
-            skill.save!
-          end
-          break
-        end
-      end
-    end
-  end
-
   task connected_car: :environment do
 
     class Skill < ActiveRecord::Base
@@ -325,62 +269,6 @@ namespace :alexa_skills_crawler do
             dev = app.css('.a-row.a-spacing-none>span').text
             desc = app.css('.a-unordered-list>span').text
             category = 'Games, Trivia & Accessories'
-            rating = app.css('.a-icon.a-icon-star').text
-            number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
-            skill = Skill.find_or_initialize_by(name: name)
-            skill.update_attributes({name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating})
-            skill.save!
-          end
-          break
-        end
-      end
-    end
-  end
-
-  task health_and_fitness: :environment do
-
-    class Skill < ActiveRecord::Base
-      attr_reader :name
-      attr_reader :dev
-      attr_reader :desc
-      attr_reader :rating
-      attr_reader :number_of_rating
-      attr_reader :category
-    end
-
-    class ApplicationController < ActionController::Base
-      protect_from_forgery with: :exception
-
-      require 'mechanize'
-      require 'open-uri'
-      require 'nokogiri'
-
-      agent = Mechanize.new
-      agent.user_agent = 'Chrome/41.0.2228.0'
-      url = "https://www.amazon.com/s/ref=lp_13727921011_nr_n_6?fst=as%3Aoff&rh=n%3A13727921011%2Cn%3A%2113727922011%2Cn%3A14284831011&bbn=13727922011&ie=UTF8&qid=1502384327&rnid=13727922011"
-      page = agent.get(url)
-      loop do
-        if link = page.link_with(:class => "pagnNext")
-          apps = page.parser.css('.s-item-container')
-          apps.each do |app|
-            name = app.css('h2').text
-            dev = app.css('.a-row.a-spacing-none>span').text
-            desc = app.css('.a-unordered-list>span').text
-            category = 'Health & Fitness'
-            rating = app.css('.a-icon.a-icon-star').text
-            number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
-            skill = Skill.find_or_initialize_by(name: name)
-            skill.update_attributes({name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating})
-            skill.save!
-          end
-          page = link.click
-        else
-          apps = page.parser.css('.s-item-container')
-          apps.each do |app|
-            name = app.css('h2').text
-            dev = app.css('.a-row.a-spacing-none>span').text
-            desc = app.css('.a-unordered-list>span').text
-            category = 'Health & Fitness'
             rating = app.css('.a-icon.a-icon-star').text
             number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
             skill = Skill.find_or_initialize_by(name: name)

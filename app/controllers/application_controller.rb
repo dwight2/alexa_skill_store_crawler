@@ -6,111 +6,102 @@ class ApplicationController < ActionController::Base
   require 'nokogiri'
 
   def index
+    @skills = Skill.all.paginate(page: params[:page], per_page: 100)
     render template: 'home'
   end
 
   def business_and_finance_alexa_skills
-    @skills = Skill.where(category: 'Business & Finance')
-    render template: 'alexa_skills'
-  end
-
-  def communication_alexa_skills
-    @skills = Skill.where(category: 'Communication')
+    @skills = Skill.where(category: 'Business & Finance').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def connected_car_alexa_skills
-    @skills = Skill.where(:category => 'Connected Car')
+    @skills = Skill.where(:category => 'Connected Car').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def education_and_reference_alexa_skills
-    @skills = Skill.where(:category => 'Education & Reference')
+    @skills = Skill.where(:category => 'Education & Reference').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def food_and_drink_alexa_skills
-    @skills = Skill.where(:category => 'Food & Drink')
+    @skills = Skill.where(:category => 'Food & Drink').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def games_trivia_and_accessories_alexa_skills
-    @skills = Skill.where(:category => 'Games, Trivia & Accessories')
-    render template: 'alexa_skills'
-  end
-
-  def health_and_fitness_alexa_skills
-    @skills = Skill.where(:category => 'Health & Fitness')
+    @skills = Skill.where(:category => 'Games, Trivia & Accessories').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def lifestyle_alexa_skills
-    @skills = Skill.where(:category => 'Lifestyle')
+    @skills = Skill.where(:category => 'Lifestyle').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def local_alexa_skills
-    @skills = Skill.where(:category => 'Local')
+    @skills = Skill.where(:category => 'Local').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def movies_and_tv_alexa_skills
-    @skills = Skill.where(:category => 'Movies & TV')
+    @skills = Skill.where(:category => 'Movies & TV').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def music_and_audio_alexa_skills
-    @skills = Skill.where(:category => 'Music & Audio')
+    @skills = Skill.where(:category => 'Music & Audio').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def news_alexa_skills
-    @skills = Skill.where(:category => 'News')
+    @skills = Skill.where(:category => 'News').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def novelty_and_humor_alexa_skills
-    @skills = Skill.where(:category => 'Novelty & Humor')
+    @skills = Skill.where(:category => 'Novelty & Humor').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def productivity_alexa_skills
-    @skills = Skill.where(:category => 'Productivity')
+    @skills = Skill.where(:category => 'Productivity').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def shopping_alexa_skills
-    @skills = Skill.where(:category => 'Shopping')
+    @skills = Skill.where(:category => 'Shopping').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def smart_home_alexa_skills
-    @skills = Skill.where(:category => 'Smart Home')
+    @skills = Skill.where(:category => 'Smart Home').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def social_alexa_skills
-    @skills = Skill.where(:category => 'Social')
+    @skills = Skill.where(:category => 'Social').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def sports_alexa_skills
-    @skills = Skill.where(:category => 'Sports')
+    @skills = Skill.where(:category => 'Sports').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def travel_and_transportation_alexa_skills
-    @skills = Skill.where(:category => 'Travel & Transportation')
+    @skills = Skill.where(:category => 'Travel & Transportation').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def utilities_alexa_skills
-    @skills = Skill.where(:category => 'Utilities')
+    @skills = Skill.where(:category => 'Utilities').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 
   def weather_alexa_skills
-    @skills = Skill.where(:category => 'Weather')
+    @skills = Skill.where(:category => 'Weather').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'
   end
 end

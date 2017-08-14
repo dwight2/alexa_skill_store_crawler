@@ -26,6 +26,9 @@ gem 'jquery-rails'
 gem 'nokogiri'
 gem 'mechanize'
 gem 'rake'
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate-bootstrap'
+gem 'whenever', :require => false
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

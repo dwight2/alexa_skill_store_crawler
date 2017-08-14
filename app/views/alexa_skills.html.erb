@@ -1,12 +1,27 @@
-<%= link_to 'home', root_path %>
-
-<h1>Alexa Skills - <%= @skills.first.category %></h1>
-<% @skills.each do |skill| %>
-  <p><%= skill.name %></p>
-  <p><%= skill.dev %></p>
-  <p>Category: <%= skill.category %></p>
-  <p>Rating: <%= skill.rating %></p>
-  <p>Number of ratings: <%= skill.number_of_rating %></p>
-  <p><%= skill.desc %></p>
-  <p>----------------------------------</p>
-<% end %>
+<div>
+  <div class="row">
+    <div class="col">
+      <h2><%= @skills.first.category %></h2>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <% @skills.each do |skill| %>
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title"><%= skill.name %></h4>
+          <h6 class="card-subtitle mb-2 text-muted"><%= skill.dev %></h6>
+          <p class="card-text">Rating: <%= skill.rating %></p>
+          <p class="card-text">Number of ratings: <%= skill.number_of_rating %></p>
+          <p class="card-text"><%= skill.desc %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <%= will_paginate @skills, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>
