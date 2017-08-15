@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   get 'application/travel_and_transportation_alexa_skills'
   get 'application/utilities_alexa_skills'
   get 'application/weather_alexa_skills'
+  get 'application/dev_list'
 end

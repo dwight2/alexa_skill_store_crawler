@@ -10,6 +10,11 @@ class ApplicationController < ActionController::Base
     render template: 'home'
   end
 
+  def dev_list
+    @developers = Developer.all.order(number_of_skills: :desc)
+    render template: 'dev_list'
+  end
+
   def business_and_finance_alexa_skills
     @skills = Skill.where(category: 'Business & Finance').paginate(page: params[:page], per_page: 50)
     render template: 'alexa_skills'

@@ -39,4 +39,6 @@ every 12.hours do
   rake "alexa_skills_crawler:travel_and_transportation"
   rake "alexa_skills_crawler:utilities"
   rake "alexa_skills_crawler:weather"
+  rake "dev_list:update_dev"
+  rake "dev_list:update_number_of_alexa_skills"
 end
