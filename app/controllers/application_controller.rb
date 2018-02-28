@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   require 'nokogiri'
 
   def index
-    @skills = Skill.all.paginate(page: params[:page], per_page: 100)
+    @skills = Skill.all.order(rating: :desc).paginate(page: params[:page], per_page: 100)
     render template: 'home'
   end
 
