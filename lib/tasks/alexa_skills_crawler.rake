@@ -14,34 +14,74 @@ namespace :alexa_skills_crawler do
   require 'open-uri'
   require 'nokogiri'
 
-  def get_page(url)
+  # def get_page(url)
+  #   agent = Mechanize.new
+  #   agent.user_agent_alias = 'Mac Safari'
+  #   agent.get(url)
+  # end
+
+  # def get_apps(page, category)
+  #   puts 'get apps start'
+  #   apps = page.parser.css('.s-item-container')
+  #   apps.each do |app|
+  #     name = app.css('h2').text
+  #     dev = app.css('.a-row.a-spacing-none>span').text
+  #     desc = app.css('.a-unordered-list>span').text
+  #     rating = app.css('.a-icon.a-icon-star').text
+  #     number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
+  #     skill = Skill.find_or_initialize_by(name: name)
+  #     skill.update_attributes(name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating)
+  #     skill.save!
+  #     puts skill.inspect
+  #   end
+  # end
+
+  def random_user_agent
+    agent_version = ['Chrome/43.0.2357', 'Chrome/44.0.2403', 'Chrome/45.0.2454', 'Chrome/46.0.2490', 'Chrome/47.0.2526', 'Chrome/48.0.2564', 'Chrome/49.0.2623', 'Chrome/50.0.2661', 'Chrome/51.0.2704', 'Chrome/52.0.2743', 'Chrome/53.0.2785', 'Chrome/54.0.2840', 'Chrome/55.0.2883', 'Chrome/56.0.2924', 'Chrome/57.0.2987', 'Chrome/58.0.3029', 'Chrome/59.0.3071', 'Chrome/61.0.3163', 'Chrome/62.0.3202', 'Chrome/64.0.3282']
+    index_number = rand(0...agent_version.length)
+    agent_version[index_number]
+  end
+
+  def save_to_db(url, category)
+    # page = get_page(url)
+
     agent = Mechanize.new
-    agent.user_agent = 'Chrome/50.0.2228.0'
-    return agent.get(url)
-  end
+    agent.robots = 'enabled'
+    agent.user_agent = random_user_agent
+    puts agent.user_agent
 
-  def get_apps(page, category)
-    apps = page.parser.css('.s-item-container')
-    apps.each do |app|
-      name = app.css('h2').text
-      dev = app.css('.a-row.a-spacing-none>span').text
-      desc = app.css('.a-unordered-list>span').text
-      rating = app.css('.a-icon.a-icon-star').text
-      number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
-      skill = Skill.find_or_initialize_by(name: name)
-      skill.update_attributes(name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating)
-      skill.save!
-      puts skill.inspect
-    end
-  end
+    # agent.user_agent_alias = 'Mac Safari'
 
-  def save_to_db(url, cateogory)
-    page = get_page(url)
+    page = agent.get(url)
+    puts page.inspect
+
     loop do
-      get_apps(page, cateogory)
+      puts 'loop start'
+
+      # get_apps(page, cateogory)
+      # puts 'got apps'
+
+      apps = page.parser.css('.s-item-container')
+      apps.each do |app|
+        name = app.css('h2').text
+        dev = app.css('.a-row.a-spacing-none>span').text
+        desc = app.css('.a-unordered-list>span').text
+        rating = app.css('.a-icon.a-icon-star').text
+        number_of_rating = app.css('.a-size-small.a-link-normal.a-text-normal').text
+        skill = Skill.find_or_initialize_by(name: name)
+        skill.update_attributes(name: name, dev: dev, desc: desc, category: category, rating: rating, number_of_rating: number_of_rating)
+        skill.save!
+        puts skill.inspect
+      end
+
+      # change user agent for mechanize
+      agent.user_agent = random_user_agent
+      puts agent.user_agent
+
       link = page.link_with(:class => "pagnNext")
       if link
         page = link.click
+        puts 'next ============================================================'
       else
         break
       end
